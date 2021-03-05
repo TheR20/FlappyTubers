@@ -7,9 +7,14 @@ import Wall from './src/components/Wall';
 import Constants from './src/Constants';
 import Physics from './src/Physics';
 import Floor from './src/components/Floor';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export const randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+
+
+
 
 export const generatePipes = () => {
     let topPipeHeight = randomBetween(100, (Constants.MAX_HEIGHT / 2) - 100);
@@ -31,12 +36,48 @@ export default class App extends Component {
 
         this.state = {
       running: true,
-      score: 0
+      score: 0,
+      MaxScore: "0",
+      scoreText:"Your Score:"
   };
         this.gameEngine = null;
 
         this.entities = this.setupWorld();
     }
+
+
+//AsyncStorage el guardar y leer
+ storeData = async (value) => {
+  try {
+      if(this.state.score > value){
+          await AsyncStorage.setItem('@storage_Key', String(this.state.score))
+          this.setState({scoreText: "New High Score!!!"})
+      }
+      else
+        this.setState({scoreText: "Your Score:"})
+
+
+  } catch (e) {
+    // saving error
+  }
+}
+
+ getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@storage_Key')
+    if(value !== null) {
+
+      this.setState({MaxScore: value})
+
+
+    }
+  } catch(e) {
+    // error reading value
+  }
+}
+
+
+
 
     setupWorld = () => {
           let engine = Matter.Engine.create({ enableSleeping: false });
@@ -81,6 +122,9 @@ export default class App extends Component {
                this.setState({
                    running: false
                });
+               this.getData()
+               this.storeData(this.state.MaxScore)
+
            } else if (e.type === "score") {
                this.setState({
                    score: this.state.score + 1
@@ -112,13 +156,18 @@ export default class App extends Component {
                 </GameEngine>
                 <Text style={styles.score}>{this.state.score}</Text>
                  {!this.state.running && <TouchableOpacity style={styles.fullScreenButton} onPress={this.reset}>
+
+
                      <View style={styles.fullScreen}>
-                     <Text style={styles.YourScoreText}>Your Score:</Text>
+                     <Text style={styles.YourScoreText}>{this.state.scoreText}</Text>
                      <Text style={styles.scoreGameOver}>{this.state.score}</Text>
+                     <Text style={styles.ScoreText}>High Score:</Text>
+                     <Text style={styles.gameOverText}>{this.state.MaxScore}</Text>
                          <Text style={styles.gameOverText}>Game Over</Text>
                          <Text style={styles.gameOverSubText}>Try Again</Text>
                      </View>
-                 </TouchableOpacity>}
+                 </TouchableOpacity>
+               }
             </View>
         );
     }
@@ -147,6 +196,12 @@ const styles = StyleSheet.create({
   },
   gameOverText: {
       color: 'white',
+      fontSize: 48,
+      fontFamily: '04b_19'
+  },
+  ScoreText
+  : {
+      color: 'yellow',
       fontSize: 48,
       fontFamily: '04b_19'
   },
