@@ -89,13 +89,13 @@ export default class App extends Component {
 
           let floor1 = Matter.Bodies.rectangle(
               Constants.MAX_WIDTH / 2,
-              Constants.MAX_HEIGHT - 25,
+              Constants.MAX_HEIGHT - 100,
               Constants.MAX_WIDTH + 4,
               50, { isStatic: true }
           );
           let floor2 = Matter.Bodies.rectangle(
               Constants.MAX_WIDTH + (Constants.MAX_WIDTH / 2),
-              Constants.MAX_HEIGHT - 25,
+              Constants.MAX_HEIGHT - 100,
               Constants.MAX_WIDTH + 4,
               50, { isStatic: true }
           );

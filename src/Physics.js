@@ -96,6 +96,8 @@ const Physics = (entities, { touches, time, dispatch }) => {
     let world = entities.physics.world;
     let bird = entities.bird.body;
 
+    bird.personaje = "Carlitox";
+
     let hadTouches = false;
     touches.filter(t => t.type === "press").forEach(t => {
         if (!hadTouches){
@@ -109,17 +111,17 @@ const Physics = (entities, { touches, time, dispatch }) => {
             hadTouches = true;
             Matter.Body.setVelocity( bird, {
                 x: bird.velocity.x,
-                y: -18
+                y: -14
             });
         }
 
     });
 
     Matter.Engine.update(engine, time.delta);
-
+//Velocidad moficiar el x-18
     Object.keys(entities).forEach(key => {
         if (key.indexOf("pipe") === 0 && entities.hasOwnProperty(key)){
-            Matter.Body.translate(entities[key].body, {x: -12, y: 0});
+            Matter.Body.translate(entities[key].body, {x: -11, y: 0});
 
             if (key.indexOf("Top") !== -1 && parseInt(key.replace("pipe", "")) % 2 === 0){
                 if (entities[key].body.position.x <= bird.position.x && !entities[key].scored){
