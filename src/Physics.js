@@ -1,10 +1,11 @@
 import Matter from "matter-js";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Pipe from '../Pipe';
 import PipeTop from '../PipeTop';
 let tick = 0;
 let pose = 1;
 let pipes = 0;
+let personaje = "";
 
 export const randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -12,6 +13,22 @@ export const randomBetween = (min, max) => {
 
 export const resetPipes = () => {
     pipes = 0;
+}
+
+
+
+export const getData = async () => {
+ try {
+   const value = await AsyncStorage.getItem('@storage_Personaje')
+   if(value !== null) {
+
+    personaje = value;
+
+
+   }
+ } catch(e) {
+   // error reading value
+ }
 }
 
 export const generatePipes = () => {
@@ -91,12 +108,14 @@ export const addPipesAtLocation = (x, world, entities) => {
 }
 
 
+
+
 const Physics = (entities, { touches, time, dispatch }) => {
     let engine = entities.physics.engine;
     let world = entities.physics.world;
     let bird = entities.bird.body;
-
-    bird.personaje = "Carlitox";
+getData();
+    bird.personaje = personaje;
 
     let hadTouches = false;
     touches.filter(t => t.type === "press").forEach(t => {

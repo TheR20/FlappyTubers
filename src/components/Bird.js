@@ -11,9 +11,9 @@ export default class Bird extends Component {
         const y = this.props.body.position.y - height / 2;
         const personaje = this.props.body.personaje;
 
-        console.log(personaje);
 
-        let image = Images['bird1'];
+
+        let image = Images[personaje];
         return (
             <Image
                 style={{
