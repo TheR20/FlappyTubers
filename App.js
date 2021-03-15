@@ -7,7 +7,19 @@ import Puente from './puente.js'
 import Bananas from './src/icono';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Images from './assets/Images';
+import LocalizedStrings from 'localized-strings';
 
+
+let strings = new LocalizedStrings({
+  en:{
+     Personajes: "More Characters"
+
+  },
+  es: {
+    Personajes: "Mas Personajes"
+  },
+}
+);
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
@@ -91,11 +103,11 @@ switch(cambiopantalla){
     <View style = {styles.barraSuperior2}>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("3")}}>
-    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['izquierda']} titulo={strings.Personajes}/>
     </TouchableHighlight>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("2")}}>
-    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['derecha']} titulo={strings.Personajes}/>
     </TouchableHighlight>
 
     </View>
@@ -169,11 +181,11 @@ switch(cambiopantalla){
     <View style = {styles.barraSuperior2}>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("1")}}>
-    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['izquierda']} titulo={strings.Personajes}/>
     </TouchableHighlight>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("3")}}>
-    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['derecha']} titulo={strings.Personajes}/>
     </TouchableHighlight>
 
     </View>
@@ -250,11 +262,11 @@ switch(cambiopantalla){
     <View style = {styles.barraSuperior2}>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("2")}}>
-    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['izquierda']} titulo={strings.Personajes}/>
     </TouchableHighlight>
     <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pararSonido("1")}}>
-    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    <Bananas pic={Images['derecha']} titulo={strings.Personajes}/>
     </TouchableHighlight>
 
     </View>

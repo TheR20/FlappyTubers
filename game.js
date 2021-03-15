@@ -10,7 +10,24 @@ import Floor from './src/components/Floor';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+import LocalizedStrings from 'localized-strings';
 
+
+let strings = new LocalizedStrings({
+  en:{
+     Score: "Your Score",
+     mScore:"High Score",
+     intena: "Try Again",
+     newScore: "New High Score!",
+  },
+  es: {
+    Score: "Tu Puntaje",
+    mScore:"Puntaje Maxico",
+    newScore: "Nuevo Puntaje Maximo!",
+    intena: "Reiniciar"
+  },
+}
+);
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 export const randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -55,10 +72,10 @@ export default class App extends Component {
   try {
       if(this.state.score > value){
           await AsyncStorage.setItem('@storage_Key', String(this.state.score))
-          this.setState({scoreText: "New High Score!!!"})
+          this.setState({scoreText: strings.newScore})
       }
       else
-        this.setState({scoreText: "Your Score:"})
+        this.setState({scoreText: strings.Score})
 
 
   } catch (e) {
@@ -166,10 +183,10 @@ export default class App extends Component {
                       <View style={styles.fullScreen}>
                      <Text style={styles.YourScoreText}>{this.state.scoreText}</Text>
                      <Text style={styles.scoreGameOver}>{this.state.score}</Text>
-                     <Text style={styles.ScoreText}>High Score:</Text>
+                     <Text style={styles.ScoreText}>{strings.mScore}</Text>
                      <Text style={styles.gameOverText}>{this.state.MaxScore}</Text>
                          <Text style={styles.gameOverText}>Game Over</Text>
-                         <Text style={styles.gameOverSubText}>Try Again</Text>
+                         <Text style={styles.gameOverSubText}>{strings.intena}</Text>
 
 <View style={styles.banner}>
                          <BannerAd
