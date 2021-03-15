@@ -7,20 +7,13 @@ import Puente from './puente.js'
 import Bananas from './src/icono';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Images from './assets/Images';
-
+let image = require('./assets/img/carlitox.png');
+console.log(image + "askjdhsajdhsajk");
 const images = [
-  'https://yt3.ggpht.com/ytc/AAUvwnhshBh9HtnR4MwcK8fFrHspcfXmeNbz5gphS0i3=s900-c-k-c0x00ffffff-no-rj',
-'https://yt3.ggpht.com/ytc/AAUvwnijYqaKG3ayOAcLBpADpH1ngIbU-kPCnD9_43-R4A=s900-c-k-c0x00ffffff-no-rj',
-'https://static.wikia.nocookie.net/electroboom/images/e/eb/Maxresdefault_%282%29.jpg/revision/latest/top-crop/width/360/height/450?cb=20181002182409',
-'https://yt3.ggpht.com/ytc/AAUvwnhLK37_1ETrwiTrl5PD99XOF8bYgxZQWiniFw1bBg=s900-c-k-c0x00ffffff-no-rj',
-'https://i.imgur.com/85HzmYQ.jpg',
-'https://yt3.ggpht.com/ytc/AAUvwnjEscV-JIIZQR2RZbnJKd2tablwRlpoJjfxlFOlkQ=s900-c-k-c0x00ffffff-no-rj',
-'https://i.imgur.com/MRzjjX8.jpg',
-'https://yt3.ggpht.com/ytc/AAUvwniQtAeUpj_i_7daSQ1gOIYvElgJ-Rztgvydjuxl=s900-c-k-c0x00ffffff-no-rj',
-'https://i.ytimg.com/vi/RieOvBrChvY/maxresdefault.jpg',
+
 
 ];
-
+var pantalla = 1;
 var pasoJuego = async (value) => {
  try {
     await AsyncStorage.setItem('@storage_Personaje', value)
@@ -30,100 +23,318 @@ var pasoJuego = async (value) => {
  }
 }
 
+var pasoPantalla = async (value) => {
+ pantalla = 2;
+}
+
+var imagenfondo = 'https://i.imgur.com/kM0J2PZ.jpg';
+var pantalla = 1;
 function HomeScreen({ navigation }) {
+  const [cambiopantalla, setcambiopantalla] = React.useState('1');
+  const pararSonido =(estado)=>{
+        setcambiopantalla(estado);
+        console.log(estado);
+       }
+
+switch(cambiopantalla){
+  case '1':
   return (
-    <ImageBackground style={styles.backgroundImage} source={{uri:  'https://i.imgur.com/kM0J2PZ.jpg'}}>
+    <ImageBackground style={styles.backgroundImage} source={{uri:  imagenfondo}}>
 
 <ScrollView>
-<View style = {styles.barraSuperior}>
+<View style = {styles.barraSuperior2}>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-     {pasoJuego("carlitox");navigation.navigate('Juego');}}>
-      <Bananas pic={images[8]} titulo="Top Comics"/>
+     {pasoJuego("topcomics");navigation.navigate('Juego');}}>
+      <Bananas pic={Images['topcomicslogo']} titulo="Top Comics"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-     {pasoJuego("batsy");navigation.navigate('Juego');}}>
-       <Bananas pic={images[6]} titulo="Cinexceso"/>
+     {pasoJuego("mefe");navigation.navigate('Juego');}}>
+       <Bananas pic={Images['cinexceso']} titulo="Cinexceso"/>
   </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-    {pasoJuego("amazing");navigation.navigate('Juego');}}>
-      <Bananas pic={images[1]} titulo="Variant Comics"/>
+    {pasoJuego("variant");navigation.navigate('Juego');}}>
+      <Bananas pic={Images['variantlogo']} titulo="Variant Comics"/>
 </TouchableHighlight>
 
       </View>
 
       <View style = {styles.barraSuperior2}>
         <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-           {pasoJuego("carlitox");navigation.navigate('Juego');}}>
-          <Bananas pic={images[9]} titulo="Andres Navy"/>
+
+         {pasoJuego("sombrai");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['sombra']} titulo="La Sombra Del Imperio"/>
         </TouchableHighlight>
         <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-           {pasoJuego("batsy");navigation.navigate('Juego');}}>
-             <Bananas pic={images[3]} titulo="Carlitox Banana"/>
+           {pasoJuego("banana");navigation.navigate('Juego');}}>
+             <Bananas pic={Images['bananalogo']} titulo="Carlitox Banana"/>
         </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-          {pasoJuego("amazing");navigation.navigate('Juego');}}>
-          <Bananas pic={images[0]} titulo="Comics Explained"/>
+          {pasoJuego("batsun");navigation.navigate('Juego');}}>
+            <Bananas pic={Images['batsunlogo']} titulo="Bat In the Sun"/>
 
         </TouchableHighlight>
 
             </View>
       <View style = {styles.barraSuperior2}>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-   {pasoJuego("mefe");navigation.navigate('Juego');}}>
-    <Bananas pic={images[11]} titulo="Extraordinerd"/>
+   {pasoJuego("extra");navigation.navigate('Juego');}}>
+    <Bananas pic={Images['extralogo']} titulo="Extraord inerd"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-    {navigation.navigate('BackTrack', {genero:'Punk' , numArreglo:4});}}>
-    <Bananas pic={images[4]} titulo="El Batsy"/>
+    {pasoJuego("batsy");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['batsylogo']} titulo="El Batsi"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-    {navigation.navigate('BackTrack', {genero:'Metal' , numArreglo:5});}}>
-      <Bananas pic={images[2]} titulo="ElectroBOOM"/>
+    {pasoJuego("zaap");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['zaaplogo']} titulo="AlejoZaaap"/>
   </TouchableHighlight>
     </View>
 
     <View style = {styles.barraSuperior2}>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-  {navigation.navigate('BackTrack', {genero:'Reggae' , numArreglo:3});}}>
-  <Bananas pic={images[1]} titulo="Peliscomic"/>
-</TouchableHighlight>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-  {navigation.navigate('BackTrack', {genero:'Punk' , numArreglo:4});}}>
-  <Bananas pic={images[5]} titulo="Amazing Comics"/>
-</TouchableHighlight>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-  {navigation.navigate('BackTrack', {genero:'Metal' , numArreglo:5});}}>
-<Bananas pic={images[7]} titulo="Charly Mustain"/>
-</TouchableHighlight>
-  </View>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("3")}}>
+    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("2")}}>
+    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
 
-  <View style = {styles.barraSuperior2}>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Reggae' , numArreglo:3});}}>
-  <Bananas pic={images[1]} titulo="YouGambit"/>
-</TouchableHighlight>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Punk' , numArreglo:4});}}>
-<Bananas pic={images[4]} titulo="AlejoZaap"/>
-</TouchableHighlight>
-<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Metal' , numArreglo:5});}}>
-<Bananas pic={images[5]} titulo="New Sage "/>
-</TouchableHighlight>
-</View>
+    </View>
 
+
+<Text>
+</Text>
+<Text>
+</Text>
+<Text>
+</Text>
+</ScrollView>
+
+
+    </ImageBackground>
+  );
+  break;
+  case '2':
+  return (
+    <ImageBackground style={styles.backgroundImage} source={{uri:  imagenfondo}}>
+
+<ScrollView>
 <View style = {styles.barraSuperior2}>
 <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Reggae' , numArreglo:3});}}>
-<Bananas pic={images[1]} titulo="La Sombra del Imperio"/>
+{pasoJuego("pcomic");navigation.navigate('Juego');}}>
+<Bananas pic={Images['pcomiclogo']} titulo="Pelicomic"/>
 </TouchableHighlight>
 <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Punk' , numArreglo:4});}}>
-<Bananas pic={images[4]} titulo="Proyecto Chaos"/>
+{pasoJuego("amazing");navigation.navigate('Juego');}}>
+<Bananas pic={Images['amazinglogo']} titulo="Amazing ComicX"/>
 </TouchableHighlight>
 <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-{navigation.navigate('BackTrack', {genero:'Metal' , numArreglo:5});}}>
-<Bananas pic={images[5]} titulo="EstoEs COMBO"/>
+{pasoJuego("charly");navigation.navigate('Juego');}}>
+<Bananas pic={Images['charlylogo']} titulo="Charly Mustain"/>
 </TouchableHighlight>
 </View>
+
+
+      <View style = {styles.barraSuperior2}>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("navy");navigation.navigate('Juego');}}>
+         <Bananas pic={Images['navylogo']} titulo="Andres Navy"/>
+        </TouchableHighlight>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("cexplained");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['cexplainedlogo']} titulo="Comics Explained"/>
+
+        </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("newsage");navigation.navigate('Juego');}}>
+         <Bananas pic={Images['newsagelogo']} titulo="New Sage"/>
+
+        </TouchableHighlight>
+
+            </View>
+      <View style = {styles.barraSuperior2}>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("newsage");navigation.navigate('Juego');}}>
+   <Bananas pic={Images['yougambitlogo']} titulo="YouGambit"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("chaos");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['chaoslogo']} titulo="Proyecto Chaos"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("heyner");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['heynerlogo']} titulo="Heyner Studio"/>
+  </TouchableHighlight>
+    </View>
+
+
+    <View style = {styles.barraSuperior2}>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("1")}}>
+    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("3")}}>
+    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
+
+    </View>
+
+
+<Text>
+</Text>
+<Text>
+</Text>
+<Text>
+</Text>
+</ScrollView>
+
+
+    </ImageBackground>
+  );
+  break;
+
+  case '3':
+  return (
+    <ImageBackground style={styles.backgroundImage} source={{uri:  imagenfondo}}>
+
+<ScrollView>
+<View style = {styles.barraSuperior2}>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{pasoJuego("apolo");navigation.navigate('Juego');}}>
+<Bananas pic={Images['apolologo']} titulo="Apolo1138"/>
+</TouchableHighlight>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{pasoJuego("tj");navigation.navigate('Juego');}}>
+<Bananas pic={Images['tjlogo']} titulo="Comics Tj"/>
+</TouchableHighlight>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{pasoJuego("cuates");navigation.navigate('Juego');}}>
+<Bananas pic={Images['cuateslogo']} titulo="Los Super Cuates"/>
+</TouchableHighlight>
+</View>
+
+
+      <View style = {styles.barraSuperior2}>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("fuera");navigation.navigate('Juego');}}>
+         <Bananas pic={Images['fueralogo']} titulo="Fuera de Foco"/>
+
+        </TouchableHighlight>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("shooter");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['shooterlogo']} titulo="The Shooterman"/>
+
+        </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("monitor");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['monitorlogo']} titulo="El Monitor Geek"/>
+
+        </TouchableHighlight>
+
+            </View>
+      <View style = {styles.barraSuperior2}>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("apolo");navigation.navigate('Juego');}}>
+   <Bananas pic={Images['comicstorylogo']} titulo="Comic Story"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("chaos");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['chaoslogo']} titulo="Proyecto Chaos"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("apolo");navigation.navigate('Juego');}}>
+    <Bananas pic={Images['baticuevalogo']} titulo="La Baticueva"/>
+
+  </TouchableHighlight>
+    </View>
+
+
+    <View style = {styles.barraSuperior2}>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("2")}}>
+    <Bananas pic={Images['izquierda']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
+    <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pararSonido("1")}}>
+    <Bananas pic={Images['derecha']} titulo="Mas Personajes"/>
+    </TouchableHighlight>
+
+    </View>
+
+
+<Text>
+</Text>
+<Text>
+</Text>
+<Text>
+</Text>
+</ScrollView>
+
+
+    </ImageBackground>
+  );
+  break;
+}
+
+}
+
+
+function DetailsScreen({ navigation }) {
+
+
+
+
+  return (
+    <ImageBackground style={styles.backgroundImage} source={{uri:  'https://i.imgur.com/kM0J2PZ.jpg'}}>
+
+<ScrollView>
+<View style = {styles.barraSuperior2}>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{pasoJuego("pcomic");navigation.navigate('Juego');}}>
+<Bananas pic={Images['pcomiclogo']} titulo="Pelicomic"/>
+</TouchableHighlight>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{pasoJuego("amazing");navigation.navigate('Juego');}}>
+<Bananas pic={Images['amazinglogo']} titulo="Amazing ComicX"/>
+</TouchableHighlight>
+<TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+{navigation.navigate('Details');}}>
+<Bananas pic={Images['charlylogo']} titulo="Charly Mustain"/>
+</TouchableHighlight>
+</View>
+
+
+      <View style = {styles.barraSuperior2}>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+           {pasoJuego("navy");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['navylogo']} titulo="Andres Navy"/>
+        </TouchableHighlight>
+        <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+           {pasoJuego("banana");navigation.navigate('Juego');}}>
+             <Bananas pic={Images['bananalogo']} titulo="Carlitox Banana"/>
+        </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+          {pasoJuego("cexplained");navigation.navigate('Juego');}}>
+          <Bananas pic={Images['cexplainedlogo']} titulo="Comics Explained"/>
+
+        </TouchableHighlight>
+
+            </View>
+      <View style = {styles.barraSuperior2}>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+   {pasoJuego("extra");navigation.navigate('Juego');}}>
+    <Bananas pic={Images['extralogo']} titulo="Extraordinerd"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("batsy");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['batsylogo']} titulo="El Batsi"/>
+  </TouchableHighlight>
+  <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
+    {pasoJuego("zaap");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['zaaplogo']} titulo="Amazing ComicX"/>
+  </TouchableHighlight>
+    </View>
+
+
+
+
 
 <Text>
 </Text>
@@ -138,7 +349,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
 const Stack = createStackNavigator();
 
 function App() {
@@ -148,6 +358,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
   <Stack.Screen name="Puente" component={Puente} options={{headerShown: false}}/>
           <Stack.Screen name="Juego" component={Juego} options={{headerShown: false}}/>
+<Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

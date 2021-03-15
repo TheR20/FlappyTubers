@@ -38,7 +38,7 @@ const Bananas = (props, { navigation }) => {
     >
 
     <Image
-    source={{uri: props.pic}}
+    source={props.pic}
     style={{
     width: 100,
     height: 100,

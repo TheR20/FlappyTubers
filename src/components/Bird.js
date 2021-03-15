@@ -14,6 +14,8 @@ export default class Bird extends Component {
 
 
         let image = Images[personaje];
+
+      
         return (
             <Image
                 style={{
