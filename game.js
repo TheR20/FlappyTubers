@@ -9,6 +9,9 @@ import Physics from './src/Physics';
 import Floor from './src/components/Floor';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 export const randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -167,6 +170,25 @@ export default class App extends Component {
                      <Text style={styles.gameOverText}>{this.state.MaxScore}</Text>
                          <Text style={styles.gameOverText}>Game Over</Text>
                          <Text style={styles.gameOverSubText}>Try Again</Text>
+
+<View style={styles.banner}>
+                         <BannerAd
+      unitId={adUnitId}
+      size={BannerAdSize.FULL_BANNER}
+      requestOptions={{
+        requestNonPersonalizedAdsOnly: true,
+      }}
+    />
+     </View>
+     <View style={styles.banner2}>
+                              <BannerAd
+           unitId={adUnitId}
+           size={BannerAdSize.FULL_BANNER}
+           requestOptions={{
+             requestNonPersonalizedAdsOnly: true,
+           }}
+         />
+          </View>
                      </View>
                  </TouchableOpacity>
                }
@@ -180,6 +202,12 @@ const styles = StyleSheet.create({
   container: {
       flex: 1,
       backgroundColor: '#fff',
+  },
+  banner:{
+    marginTop: 60
+  },
+  banner2:{
+    marginTop: 10
   },
   backgroundImage: {
       position: 'absolute',
@@ -206,7 +234,8 @@ const styles = StyleSheet.create({
   : {
       color: 'yellow',
       fontSize: 48,
-      fontFamily: '04b_19'
+      fontFamily: '04b_19',
+      marginTop: 110,
   },
   YourScoreText: {
     position: 'absolute',

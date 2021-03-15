@@ -7,12 +7,12 @@ import Puente from './puente.js'
 import Bananas from './src/icono';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Images from './assets/Images';
-let image = require('./assets/img/carlitox.png');
-console.log(image + "askjdhsajdhsajk");
-const images = [
 
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
-];
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const bannerSuperiorID = "ca-app-pub-8454341646863233/5065341800";
+const bannerSuperiorID2 = "ca-app-pub-8454341646863233/6989631710";
 var pantalla = 1;
 var pasoJuego = async (value) => {
  try {
