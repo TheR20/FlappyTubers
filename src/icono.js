@@ -49,11 +49,11 @@ const Bananas = (props, { navigation }) => {
 
     <Text
     style={{
-      fontSize: 14,
+      fontSize: 10,
           fontWeight: "bold",
           color: "white",
     textAlign: 'center',
-    bottom: -32,
+    marginTop: 90,
     textShadowColor: 'blue',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 30,

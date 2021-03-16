@@ -27,12 +27,12 @@ let strings = new LocalizedStrings({
      Score: "Your Score",
      mScore:"High Score",
      intena: "Try Again",
-     newScore: "New High Score!",
+     newScore: "New Record!",
   },
   es: {
     Score: "Tu Puntaje",
     mScore:"Puntaje Maxico",
-    newScore: "Nuevo Puntaje Maximo!",
+    newScore: "Nuevo Record",
     intena: "Reiniciar"
   },
 }
@@ -201,24 +201,7 @@ export default class App extends Component {
                          <Text style={styles.gameOverText}>Game Over</Text>
                          <Text style={styles.gameOverSubText}>{strings.intena}</Text>
 
-<View style={styles.banner}>
-                         <BannerAd
-      unitId={adUnitId}
-      size={BannerAdSize.FULL_BANNER}
-      requestOptions={{
-        requestNonPersonalizedAdsOnly: true,
-      }}
-    />
-     </View>
-     <View style={styles.banner2}>
-                              <BannerAd
-           unitId={adUnitId}
-           size={BannerAdSize.FULL_BANNER}
-           requestOptions={{
-             requestNonPersonalizedAdsOnly: true,
-           }}
-         />
-          </View>
+
                      </View>
                  </TouchableOpacity>
                }
@@ -265,15 +248,19 @@ const styles = StyleSheet.create({
       color: 'yellow',
       fontSize: 48,
       fontFamily: '04b_19',
-      marginTop: 110,
+      marginTop: 80,
+      textShadowColor: '#F42532',
+      textShadowOffset: { width: 2, height: 2},
+      textShadowRadius: 2,
+
   },
   YourScoreText: {
     position: 'absolute',
     color: 'yellow',
     fontSize: 48,
     top: 48,
-
-    textShadowColor: '#444444',
+marginBottom: 20,
+    textShadowColor: '#F42532',
     textShadowOffset: { width: 2, height: 2},
     textShadowRadius: 2,
     fontFamily: '04b_19'
@@ -281,7 +268,10 @@ const styles = StyleSheet.create({
   gameOverSubText: {
       color: 'white',
       fontSize: 24,
-      fontFamily: '04b_19'
+      fontFamily: '04b_19',
+      textShadowColor: 'green',
+      textShadowOffset: { width: 2, height: 2},
+      textShadowRadius: 2,
   },
   fullScreen: {
       position: 'absolute',
@@ -300,7 +290,7 @@ const styles = StyleSheet.create({
       fontSize: 72,
       top: 50,
       left: Constants.MAX_WIDTH / 2 - 20,
-      textShadowColor: '#444444',
+      textShadowColor: '#F42532',
       textShadowOffset: { width: 2, height: 2},
       textShadowRadius: 2,
       fontFamily: '04b_19'

@@ -57,6 +57,8 @@ export default Images = {
           monitorlogo:require('./img/monitor.jpg'),
             monitor:require('./img/monitor.png'),
 story:require('./img/story.png'),
+cinemotialogo:require('./img/cinetomialogo.jpg'),
+  cinemotia:require('./img/cinetomia.png'),
 
 
     yougambitlogo:require('./img/gambitlogo.jpg'),

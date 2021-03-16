@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Button, View, Text,TouchableHighlight,StyleSheet,ImageBackground,ScrollView } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { AppState,Button, View, Text,TouchableHighlight,StyleSheet,ImageBackground,ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Juego from './game.js';
@@ -74,8 +74,35 @@ var pasoPantalla = async (value) => {
 
 var imagenfondo = 'https://i.imgur.com/kM0J2PZ.jpg';
 var pantalla = 1;
+
 function HomeScreen({ navigation }) {
+  const appState = useRef(AppState.currentState);
   const [cambiopantalla, setcambiopantalla] = React.useState('1');
+const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+
+
+  useEffect(() => {
+     AppState.addEventListener("change", _handleAppStateChange);
+
+     return () => {
+       AppState.removeEventListener("change", _handleAppStateChange);
+     };
+   }, []);
+
+   const _handleAppStateChange = (nextAppState) => {
+
+       appState.current = nextAppState;
+       setAppStateVisible(appState.current);
+       console.log("AppState", appState.current);
+
+       if(appState.current == "background")
+          sound.stop();
+          if(appState.current == "active")
+
+         sound.play();
+     };
+
   const pararSonido =(estado)=>{
         setcambiopantalla(estado);
         console.log(estado);
@@ -122,7 +149,7 @@ switch(cambiopantalla){
       <View style = {styles.barraSuperior2}>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
    {pasoJuego("extra");navigation.navigate('Juego');}}>
-    <Bananas pic={Images['extralogo']} titulo="Extraord inerd"/>
+    <Bananas pic={Images['extralogo']} titulo="Extraordi nerd"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pasoJuego("batsy");navigation.navigate('Juego');}}>
@@ -271,7 +298,7 @@ switch(cambiopantalla){
 
         </TouchableHighlight><TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
           {pasoJuego("monitor");navigation.navigate('Juego');}}>
-          <Bananas pic={Images['monitorlogo']} titulo="El Monitor Geek"/>
+          <Bananas pic={Images['monitorlogo']} titulo="Go! El Monitor Geek"/>
 
         </TouchableHighlight>
 
@@ -282,8 +309,8 @@ switch(cambiopantalla){
    <Bananas pic={Images['comicstorylogo']} titulo="Comic Story"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-    {pasoJuego("chaos");navigation.navigate('Juego');}}>
-     <Bananas pic={Images['chaoslogo']} titulo="Proyecto Chaos"/>
+    {pasoJuego("cinemotia");navigation.navigate('Juego');}}>
+     <Bananas pic={Images['cinemotialogo']} titulo="Cinetomia"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
     {pasoJuego("apolo");navigation.navigate('Juego');}}>
