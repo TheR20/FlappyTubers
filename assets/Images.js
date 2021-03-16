@@ -56,7 +56,7 @@ export default Images = {
           fuera:require('./img/fuera.png'),
           monitorlogo:require('./img/monitor.jpg'),
             monitor:require('./img/monitor.png'),
-
+story:require('./img/story.png'),
 
 
     yougambitlogo:require('./img/gambitlogo.jpg'),

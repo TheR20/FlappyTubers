@@ -130,7 +130,7 @@ getData();
             hadTouches = true;
             Matter.Body.setVelocity( bird, {
                 x: bird.velocity.x,
-                y: -14
+                y: -17
             });
         }
 

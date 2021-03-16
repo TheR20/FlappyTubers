@@ -10,6 +10,38 @@ import Images from './assets/Images';
 import LocalizedStrings from 'localized-strings';
 
 
+
+
+//Se usa para iniciar la musica de fondo
+var Sound = require('react-native-sound');
+var sound = new Sound('menu2', Sound.MAIN_BUNDLE, (error) => {
+if (error) {
+console.log('error', error);
+return;
+}
+// Poner el valor -1 hace que el loop sea infinito
+sound.setNumberOfLoops(-1);
+
+ console.log("si soy sonidero");
+ sound.play();
+});
+
+
+var sound2 = new Sound('selecto', Sound.MAIN_BUNDLE, (error) => {
+if (error) {
+console.log('error', error);
+return;
+}
+});
+var sound4 = new Sound('cambio', Sound.MAIN_BUNDLE, (error) => {
+if (error) {
+console.log('error', error);
+return;
+}
+});
+
+
+
 let strings = new LocalizedStrings({
   en:{
      Personajes: "More Characters"
@@ -29,6 +61,7 @@ var pantalla = 1;
 var pasoJuego = async (value) => {
  try {
     await AsyncStorage.setItem('@storage_Personaje', value)
+    sound2.play();
     console.log(value);
  } catch (e) {
    console.log(e);
@@ -46,6 +79,7 @@ function HomeScreen({ navigation }) {
   const pararSonido =(estado)=>{
         setcambiopantalla(estado);
         console.log(estado);
+        sound4.play();
        }
 
 switch(cambiopantalla){
@@ -244,7 +278,7 @@ switch(cambiopantalla){
             </View>
       <View style = {styles.barraSuperior2}>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>
-    {pasoJuego("apolo");navigation.navigate('Juego');}}>
+    {pasoJuego("story");navigation.navigate('Juego');}}>
    <Bananas pic={Images['comicstorylogo']} titulo="Comic Story"/>
   </TouchableHighlight>
   <TouchableHighlight style = {styles.itemBarraSuperior} onPress={() =>

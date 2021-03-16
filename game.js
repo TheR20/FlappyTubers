@@ -13,6 +13,15 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import LocalizedStrings from 'localized-strings';
 
 
+var Sound = require('react-native-sound');
+var sound3 = new Sound('muriendo', Sound.MAIN_BUNDLE, (error) => {
+if (error) {
+console.log('error', error);
+return;
+}
+});
+
+
 let strings = new LocalizedStrings({
   en:{
      Score: "Your Score",
@@ -73,9 +82,13 @@ export default class App extends Component {
       if(this.state.score > value){
           await AsyncStorage.setItem('@storage_Key', String(this.state.score))
           this.setState({scoreText: strings.newScore})
+          sound.play();
       }
-      else
-        this.setState({scoreText: strings.Score})
+      else{
+          this.setState({scoreText: strings.Score})
+        sound3.play();
+      }
+
 
 
   } catch (e) {
